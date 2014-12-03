@@ -7,7 +7,7 @@ WriteMakefile(
     NAME             => 'Locale::Country::Extra',
     AUTHOR           => q{binary.com <perl@binary.com>},
     VERSION_FROM     => 'lib/Locale/Country/Extra.pm',
-    ABSTRACT         => 'Standard and IDD codes for country identification, with Multilingual support',
+    ABSTRACT         => 'Standard and IDD codes for Country identification, with Multilingual support',
     LICENSE          => 'Artistic_2_0',
     PL_FILES         => {},
     MIN_PERL_VERSION => 5.006,
