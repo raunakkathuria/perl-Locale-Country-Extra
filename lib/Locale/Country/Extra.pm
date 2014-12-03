@@ -1,14 +1,15 @@
 package Locale::Country::Extra;
-use strict; use warnings;
+use strict;
+use warnings;
 
 our $VERSION = '0.03';
 
 use Moose;
 use Locale::Country qw();
-use Locale::Country::Multilingual {use_io_layer => 1};
+use Locale::Country::Multilingual { use_io_layer => 1 };
 
 sub country_from_code {
-    my ($self, $code) = @_;
+    my ( $self, $code ) = @_;
     die "code is required" if !$code;
     $code = lc $code;
 
@@ -19,15 +20,15 @@ sub country_from_code {
 }
 
 sub code_from_country {
-    my ($self, $country) = @_;
+    my ( $self, $country ) = @_;
     die "country is required" if !$country;
 
-    my %code_countries = reverse %{$self->_country_codes};
+    my %code_countries = reverse %{ $self->_country_codes };
     return lc $code_countries{$country};
 }
 
 sub idd_from_code {
-    my ($self, $code) = @_;
+    my ( $self, $code ) = @_;
     die "code is required" if !$code;
     $code = lc $code;
 
@@ -38,16 +39,19 @@ sub idd_from_code {
 }
 
 sub code_from_phone {
-    my ($self, $number) = @_;
+    my ( $self, $number ) = @_;
     die "number is required" if !$number;
 
     $number =~ s/\D//g;    # Remove non-digits
     $number =~ s/^00//;    # Remove the leading '00'.
 
-    if ($number !~ /^(111111|222222|333333|444444|555555|666666|777777|888888|999999|000000)/) {
-        my %code_for_idd = reverse %{$self->_idd_codes};
-        foreach my $iddcode (sort { $b <=> $a } keys %code_for_idd) {
-            if ($number =~ /^$iddcode/) {
+    if ( $number !~
+/^(111111|222222|333333|444444|555555|666666|777777|888888|999999|000000)/
+      )
+    {
+        my %code_for_idd = reverse %{ $self->_idd_codes };
+        foreach my $iddcode ( sort { $b <=> $a } keys %code_for_idd ) {
+            if ( $number =~ /^$iddcode/ ) {
                 return lc $code_for_idd{$iddcode};
             }
         }
@@ -58,21 +62,21 @@ sub code_from_phone {
 
 sub all {
     my $self = shift;
-    return values %{$self->_country_codes};
+    return values %{ $self->_country_codes };
 }
 
 sub all_country_codes {
     my $self = shift;
-    return keys %{$self->_country_codes};
+    return keys %{ $self->_country_codes };
 }
 
 sub localized_code2country {
-    my ($self, $country_code, $lang) = @_;
+    my ( $self, $country_code, $lang ) = @_;
     die "country_code is required" if !$country_code;
-    die "lang is required" if !$lang;
+    die "lang is required"         if !$lang;
 
     my $lcm = Locale::Country::Multilingual->new();
-    return $lcm->code2country($country_code, $lang);
+    return $lcm->code2country( $country_code, $lang );
 }
 
 has _country_codes => (
@@ -86,7 +90,7 @@ sub _build__country_codes {
 
     my $country_hash = {};
     foreach my $code (@codes) {
-        $country_hash->{lc($code)} = $lcm->code2country($code);
+        $country_hash->{ lc($code) } = $lcm->code2country($code);
     }
 
     return $country_hash;
@@ -335,167 +339,6 @@ sub _build__idd_codes {
 
     my %codes = reverse %$idd_for_codes;
     return \%codes;
-}
-
-# need to remove
-sub staff_system_id {
-    my $self       = shift;
-    my $staff_name = shift;
-
-    my $staff_ids = {
-        admin        => 0,
-        jy           => 1,
-        piers        => 2,
-        clive        => 3,
-        joanna       => 4,
-        stephany     => 5,
-        charisse     => 7,
-        olivia       => 8,
-        julia        => 9,
-        victor       => 10,
-        hama         => 13,
-        mon          => 14,
-        azidin       => 15,
-        noreen       => 16,
-        balaa        => 17,
-        kavitha      => 18,
-        rane         => 19,
-        ailun        => 20,
-        louise       => 21,
-        sweemeng     => 23,
-        ady          => 24,
-        casey        => 25,
-        meiying      => 26,
-        kahhin       => 27,
-        juan         => 28,
-        michael      => 29,
-        wanfei       => 30,
-        juliette     => 31,
-        gesa         => 32,
-        olga         => 33,
-        yngshan      => 34,
-        edwin        => 35,
-        callum       => 36,
-        pathma       => 37,
-        geokkheng    => 38,
-        dominik      => 39,
-        anu          => 40,
-        baljit       => 41,
-        manqing      => 42,
-        thinegan     => 43,
-        arif         => 44,
-        weichong     => 45,
-        calum        => 46,
-        ivan         => 47,
-        welly        => 48,
-        kheyeng      => 49,
-        michaelchong => 50,
-        karen        => 51,
-        putri        => 52,
-        shyamala     => 53,
-        steven       => 54,
-        derek        => 55,
-        sokting      => 56,
-        tom          => 57,
-        meiling      => 58,
-        mark         => 59,
-        mario        => 60,
-        wilson       => 61,
-        liuyang      => 62,
-        felix        => 63,
-        alex         => 64,
-        englebert    => 65,
-        jamila       => 66,
-        chinho       => 67,
-        keenlum      => 68,
-        hanane       => 69,
-        alfiya       => 70,
-        ayoama       => 71,
-        jeanpaul     => 72,
-        omid         => 73,
-        yanhong      => 74,
-        peyman       => 75,
-        mohammad     => 76,
-        ehsanjamali  => 77,
-        geewai       => 78,
-        fairozee     => 79,
-        gumilar      => 80,
-        navin        => 81,
-        sunny        => 82,
-        deni         => 83,
-        achilles     => 84,
-        holger       => 85,
-        adhitya      => 86,
-        jullian      => 87,
-        yancheng     => 88,
-        fiona        => 89,
-        fauziah      => 90,
-        shuwnyuan    => 91,
-        azadeh       => 92,
-        fuguo        => 93,
-        todd         => 94,
-        rakshit      => 95,
-        jeremy       => 96,
-        kaveh        => 97,
-        junbon       => 98,
-        paul         => 99,
-        jennice      => 100,
-        matt         => 101,
-        peiklooi     => 102,
-        sandeep      => 103,
-        balvin       => 104,
-        isaac        => 105,
-        nick         => 106,
-        aanchien     => 107,
-        luisa        => 108,
-        holleh       => 109,
-        nantinii     => 110,
-        pavel        => 111,
-        lola         => 112,
-        carel        => 113,
-        arun         => 114,
-        chris        => 115,
-        alex         => 116,
-        sandra       => 117,
-        milad        => 118,
-        carlos       => 119,
-        fabrice      => 120,
-        trishul      => 121,
-        zhenning     => 122,
-        manros       => 123,
-        arpad        => 124,
-        gryphon      => 125,
-        trevor       => 126,
-        navid        => 127,
-        annalyn      => 128,
-        rachel       => 129,
-        lena         => 130,
-        ross         => 131,
-        farzad       => 132,
-        bijan        => 133,
-        swapna       => 134,
-        saori        => 135,
-        frank        => 136,
-        thana        => 137,
-        jeff         => 138,
-        rizwan       => 139,
-        kevin        => 140,
-        torsten      => 141,
-        andrew       => 142,
-        raunak       => 143,
-        vladimir     => 144,
-        sally        => 145,
-        ditesh       => 146,
-        mahdi        => 147,
-        christravers => 148,
-        meitheng     => 149,
-        nisa         => 150,
-        rakesh       => 151,
-        crislin      => 152,
-        ashkan       => 153,
-    };
-
-    return $staff_ids->{$staff_name};
 }
 
 __PACKAGE__->meta->make_immutable;
