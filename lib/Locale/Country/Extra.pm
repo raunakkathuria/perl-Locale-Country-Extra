@@ -1,49 +1,48 @@
 package Locale::Country::Extra;
 use strict; use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.03';
 
 use Moose;
 use Locale::Country qw();
 use Locale::Country::Multilingual {use_io_layer => 1};
 
-# Country of the ip. Ex. Australia
 sub country_from_code {
-    my $self = shift;
-    my $code = shift;
+    my ($self, $code) = @_;
+    die "code is required" if !$code;
+    $code = lc $code;
 
-    if ($code eq 'uk') {
-        $code = 'gb';
-    }
+    # we need gb
+    $code = 'gb' if $code eq 'uk';
 
-    return $self->_country_codes->{lc $code};
+    return $self->_country_codes->{$code};
 }
 
 sub code_from_country {
-    my $self    = shift;
-    my $country = shift;
+    my ($self, $country) = @_;
+    die "country is required" if !$country;
 
     my %code_countries = reverse %{$self->_country_codes};
     return lc $code_countries{$country};
 }
 
 sub idd_from_code {
-    my $self = shift;
-    my $code = shift;
+    my ($self, $code) = @_;
+    die "code is required" if !$code;
+    $code = lc $code;
 
-    if ($code eq 'uk') {
-        $code = 'gb';
-    }
+    # we need gb
+    $code = 'gb' if $code eq 'uk';
 
-    return $self->_idd_codes->{lc $code};
+    return $self->_idd_codes->{$code};
 }
 
 sub code_from_phone {
-    my $self   = shift;
-    my $number = shift;
+    my ($self, $number) = @_;
+    die "number is required" if !$number;
 
-    $number =~ s/\D//g;    #Remove the leading +.
-    $number =~ s/^00//;    #Remove the leading '00'.
+    $number =~ s/\D//g;    # Remove non-digits
+    $number =~ s/^00//;    # Remove the leading '00'.
 
     if ($number !~ /^(111111|222222|333333|444444|555555|666666|777777|888888|999999|000000)/) {
         my %code_for_idd = reverse %{$self->_idd_codes};
@@ -68,13 +67,14 @@ sub all_country_codes {
 }
 
 sub localized_code2country {
-    my $self         = shift;
-    my $country_code = shift;
-    my $lang         = shift;
+    my ($self, $country_code, $lang) = @_;
+    die "country_code is required" if !$country_code;
+    die "lang is required" if !$lang;
 
     my $lcm = Locale::Country::Multilingual->new();
     return $lcm->code2country($country_code, $lang);
 }
+
 has _country_codes => (
     is         => 'ro',
     lazy_build => 1,
@@ -337,6 +337,7 @@ sub _build__idd_codes {
     return \%codes;
 }
 
+# need to remove
 sub staff_system_id {
     my $self       = shift;
     my $staff_name = shift;
@@ -499,11 +500,45 @@ sub staff_system_id {
 
 __PACKAGE__->meta->make_immutable;
 
-1;
+=head1 LICENSE AND COPYRIGHT
 
-=head1 COPYRIGHT
+Copyright 2014 binary.com.
 
-(c) 2013-, RMG Tech (Malaysia) Sdn Bhd
+This program is free software; you can redistribute it and/or modify it
+under the terms of the the Artistic License (2.0). You may obtain a
+copy of the full license at:
+
+L<http://www.perlfoundation.org/artistic_license_2_0>
+
+Any use, modification, and distribution of the Standard or Modified
+Versions is governed by this Artistic License. By using, modifying or
+distributing the Package, you accept this license. Do not use, modify,
+or distribute the Package, if you do not accept this license.
+
+If your Modified Version has been derived from a Modified Version made
+by someone other than you, you are nevertheless required to ensure that
+your Modified Version complies with the requirements of this license.
+
+This license does not grant you the right to use any trademark, service
+mark, tradename, or logo of the Copyright Holder.
+
+This license includes the non-exclusive, worldwide, free-of-charge
+patent license to make, have made, use, offer to sell, sell, import and
+otherwise transfer the Package with respect to any patent claims
+licensable by the Copyright Holder that are necessarily infringed by the
+Package. If you institute patent litigation (including a cross-claim or
+counterclaim) against any party alleging that the Package constitutes
+direct or contributory patent infringement, then this Artistic License
+to you shall terminate on the date that such litigation is filed.
+
+Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
+AND CONTRIBUTORS "AS IS' AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.
+THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE, OR NON-INFRINGEMENT ARE DISCLAIMED TO THE EXTENT PERMITTED BY
+YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR
+CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR
+CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
