@@ -1,12 +1,22 @@
 package Locale::Country::Extra;
-use strict;
-use warnings;
+use strict; use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
-use Moose;
 use Locale::Country qw();
 use Locale::Country::Multilingual { use_io_layer => 1 };
+
+sub new {
+    my $class = shift;
+
+    my $self = {};
+    bless $self, $class;
+
+    $self->{_country_codes} = $self->_build_country_codes;
+    $self->{_idd_codes} = $self->_build_idd_codes;
+
+    return $self;
+}
 
 sub country_from_code {
     my ( $self, $code ) = @_;
@@ -79,12 +89,12 @@ sub localized_code2country {
     return $lcm->code2country( $country_code, $lang );
 }
 
-has _country_codes => (
-    is         => 'ro',
-    lazy_build => 1,
-);
+sub _country_codes {
+    my ($self) = @_;
+    return $self->{_country_codes};
+}
 
-sub _build__country_codes {
+sub _build_country_codes {
     my $lcm   = Locale::Country::Multilingual->new();
     my @codes = $lcm->all_country_codes();
 
@@ -96,12 +106,12 @@ sub _build__country_codes {
     return $country_hash;
 }
 
-has '_idd_codes' => (
-    is         => 'ro',
-    lazy_build => 1,
-);
+sub _idd_codes {
+    my ($self) = @_;
+    return $self->{_idd_codes};
+}
 
-sub _build__idd_codes {
+sub _build_idd_codes {
     my $idd_for_codes = {
         1      => "us",
         1242   => "bs",
@@ -341,8 +351,6 @@ sub _build__idd_codes {
     return \%codes;
 }
 
-__PACKAGE__->meta->make_immutable;
-
 1;
 
 __END__
@@ -381,8 +389,6 @@ use Locale::Country::Extra;
 =head1 DEPENDENCIES
 
 =over 4
-
-=item L<Moose>
 
 =item L<Locale::Country>
 
