@@ -19,7 +19,7 @@ WriteMakefile(
         'Test::Exception' => 0,
     },
     PREREQ_PM => {
-        'Locale::Country' => '3.16',
+        'Locale::Country' => '0',
         'Locale::Country::Multilingual' => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },

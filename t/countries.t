@@ -11,11 +11,9 @@ my $countries = Locale::Country::Extra->new();
 subtest 'country_from_code' => sub {
     is $countries->country_from_code('au'), 'Australia',          'AU is Australia';
     is $countries->country_from_code('gb'), 'United Kingdom',     'GB is United Kingdom';
-    is $countries->country_from_code('ru'), 'Russian Federation', 'RU is Russian Federation';
     is $countries->country_from_code('id'), 'Indonesia',          'ID is Indonesia';
     is $countries->country_from_code('AU'), 'Australia',          'AU is Australia';
     is $countries->country_from_code('GB'), 'United Kingdom',     'GB is United Kingdom';
-    is $countries->country_from_code('RU'), 'Russian Federation', 'RU is Russian Federation';
     is $countries->country_from_code('ID'), 'Indonesia',          'ID is Indonesia';
 
     is $countries->country_from_code('uk'), 'United Kingdom', 'uk is also United Kingdom';
@@ -24,7 +22,6 @@ subtest 'country_from_code' => sub {
 subtest 'code_from_country' => sub {
     is $countries->code_from_country('Australia'),          'au', 'Australia is AU';
     is $countries->code_from_country('United Kingdom'),     'gb', 'United Kingdom is GB';
-    is $countries->code_from_country('Russian Federation'), 'ru', 'Russian Federation is RU';
     is $countries->code_from_country('Indonesia'),          'id', 'Indonesia is ID';
 };
 
