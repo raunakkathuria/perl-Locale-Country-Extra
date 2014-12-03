@@ -70,11 +70,6 @@ sub code_from_phone {
     return '';
 }
 
-sub all {
-    my $self = shift;
-    return values %{ $self->_country_codes };
-}
-
 sub all_country_codes {
     my $self = shift;
     return keys %{ $self->_country_codes };
