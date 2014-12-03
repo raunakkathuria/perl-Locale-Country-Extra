@@ -2,7 +2,7 @@
 use strict; use warnings;
 
 use lib 'lib';
-use Test::More (tests => 6);
+use Test::More (tests => 7);
 use Test::NoWarnings;
 use Locale::Country::Extra;
 
@@ -34,16 +34,24 @@ subtest 'idd_from_code' => sub {
     is $countries->idd_from_code('AI'), '1264', 'AI is idd 1264';
     is $countries->idd_from_code('GB'), '44',   'GB is idd 44';
     is $countries->idd_from_code('IN'), '91',   'IN is idd 91';
+    is $countries->idd_from_code('uk'), '44',   'uk is idd 44';
 };
 
 subtest 'code_from_phone' => sub {
     is $countries->code_from_phone('001222694669'),    'us', '001222694669 is from US';
     is $countries->code_from_phone('+1 264 99922211'), 'ai', '+1 264 99922211 is from AI';
     is $countries->code_from_phone('+44 8882220202'),  'gb', '+44 8882220202 is from GB';
+    is $countries->code_from_phone('11111118882220202'),  '', 
+        '11111118882220202 returns empty string';
 };
 
 subtest 'all_country_codes' => sub {
     my @all_codes = $countries->all_country_codes;
     is ref (\@all_codes), 'ARRAY', 'all_country_codes returns a list';
+};
+
+subtest 'localized_code2country' => sub {
+    my $c = $countries->localized_code2country('id', 'en');
+    is $c, 'Indonesia', 'id is Indonesia';
 };
 
