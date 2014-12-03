@@ -500,6 +500,98 @@ sub staff_system_id {
 
 __PACKAGE__->meta->make_immutable;
 
+1;
+
+__END__
+
+=head1 NAME
+
+Locale::Country::Extra
+
+=head1 VERSION
+
+Version 0.04
+
+=head1 SYNOPSIS
+
+use Locale::Country::Extra;
+
+=head1 DESCRIPTION
+
+=head1 SUBROUTINES
+
+=head2 vanilla_call
+
+    USAGE
+    my $sensitivity = vanilla_call($S, $K, $t, $r_q, $mu, $sigma)
+
+    PARAMS
+    $S => stock price
+    $K => barrier
+    $t => time (1 = 1 year)
+    $r_q => payout currency interest rate (0.05 = 5%)
+    $mu => quanto drift adjustment (0.05 = 5%)
+    $sigma => volatility (0.3 = 30%)
+
+=cut
+
+=head1 DEPENDENCIES
+
+=over 4
+
+=item L<Moose>
+
+=item L<Locale::Country>
+
+=item L<Locale::Country::Multilingual>
+
+=back
+
+=head1 SOURCE CODE
+
+L<Github|https://github.com/binary-com/perl-Locale-Country-Extra>
+
+=head1 AUTHOR
+
+binary.com, C<< <perl at binary.com> >>
+
+=head1 BUGS
+
+Please report any bugs or feature requests to
+C<bug-locale-country-extra at rt.cpan.org>, or through the web
+interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Locale-Country-Extra>.
+We will be notified, and then you'll automatically be notified of progress on
+your bug as we make changes.
+
+=head1 SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc Locale::Country::Extra
+
+You can also look for information at:
+
+=over 4
+
+=item * RT: CPAN's request tracker (report bugs here)
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Locale-Country-Extra>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/Locale-Country-Extra>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/Locale-Country-Extra>
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/Locale-Country-Extra/>
+
+=back
+
 =head1 LICENSE AND COPYRIGHT
 
 Copyright 2014 binary.com.
@@ -541,6 +633,4 @@ CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
-
-1;
 
