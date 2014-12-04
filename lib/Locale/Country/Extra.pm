@@ -352,7 +352,7 @@ __END__
 
 =head1 NAME
 
-Locale::Country::Extra
+Locale::Country::Extra - Standard and IDD codes for Country identification, with Multilingual support
 
 =head1 VERSION
 
