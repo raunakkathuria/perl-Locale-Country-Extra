@@ -1,0 +1,12 @@
+language: perl
+perl:
+    - "5.18"
+    - "5.16"
+    - "5.14"
+    - "5.12"
+before_install:
+    # install prereqs
+    - "cpanm Locale::Country"
+    - "cpanm Locale::Country::Multilingual"
+script:
+    perl Makefile.PL && make test && cover -test -report coveralls
