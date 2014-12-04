@@ -2,7 +2,7 @@
 use strict; use warnings;
 
 use lib 'lib';
-use Test::More (tests => 7);
+use Test::More (tests => 8);
 use Test::NoWarnings;
 use Locale::Country::Extra;
 
@@ -43,6 +43,11 @@ subtest 'code_from_phone' => sub {
     is $countries->code_from_phone('+44 8882220202'),  'gb', '+44 8882220202 is from GB';
     is $countries->code_from_phone('11111118882220202'),  '', 
         '11111118882220202 returns empty string';
+};
+
+subtest 'all_country_names' => sub {
+    my @all_names = $countries->all_country_names;
+    is ref (\@all_names), 'ARRAY', 'all_country_names returns a list';
 };
 
 subtest 'all_country_codes' => sub {

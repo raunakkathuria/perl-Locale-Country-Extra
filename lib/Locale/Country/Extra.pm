@@ -1,7 +1,7 @@
 package Locale::Country::Extra;
 use strict; use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 use Locale::Country qw();
 use Locale::Country::Multilingual { use_io_layer => 1 };
@@ -69,6 +69,12 @@ sub code_from_phone {
 
     return '';
 }
+
+sub all_country_names {
+    my $self = shift;
+    return values %{ $self->_country_codes };
+}
+
 
 sub all_country_codes {
     my $self = shift;
@@ -356,7 +362,7 @@ Locale::Country::Extra - Standard and IDD codes for Country identification, with
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =head1 SYNOPSIS
 
