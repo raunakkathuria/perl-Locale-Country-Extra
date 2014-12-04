@@ -1,7 +1,7 @@
 package Locale::Country::Extra;
 use strict; use warnings;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 use Locale::Country qw();
 use Locale::Country::Multilingual { use_io_layer => 1 };
@@ -356,28 +356,94 @@ Locale::Country::Extra
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =head1 SYNOPSIS
 
-use Locale::Country::Extra;
+    use Locale::Country::Extra;
 
-=head1 DESCRIPTION
+    my $countries = Locale::Country::Extra->new();
+
+    my $c = $countries->country_from_code('au'); # returns 'Australia'
+    my $code = $countries->code_from_phone('Indonesia'); # returns 'id'
+    my $idd = $countries->idd_from_code('in'); # returns 91
+    my $code = $countries->code_from_phone('+44 8882220202'); # returns 'gb'
 
 =head1 SUBROUTINES
 
-=head2 vanilla_call
+=head2 all_country_codes
 
     USAGE
-    my $sensitivity = vanilla_call($S, $K, $t, $r_q, $mu, $sigma)
+    my @codes = $c->all_country_codes()
+
+    RETURNS
+    A list of all country codes
+
+=cut
+
+=head2 code_from_country
+
+    USAGE
+    my $code = $c->code_from_country($country_name)
 
     PARAMS
-    $S => stock price
-    $K => barrier
-    $t => time (1 = 1 year)
-    $r_q => payout currency interest rate (0.05 = 5%)
-    $mu => quanto drift adjustment (0.05 = 5%)
-    $sigma => volatility (0.3 = 30%)
+    $country_name => Country Name
+
+    RETURNS
+    Country code
+
+=cut
+
+=head2 code_from_phone
+
+    USAGE
+    my $code = $c->code_from_phone($phone_number)
+
+    PARAMS
+    $phone_number   => Phone Numbder
+
+    RETURNS
+    Country code
+
+=cut
+
+=head2 country_from_code
+
+    USAGE
+    my $country_name = $c->country_from_code($country_code)
+
+    PARAMS
+    $country_code   => Country code
+
+    RETURNS
+    Country name
+
+=cut
+
+=head2 idd_from_code
+
+    USAGE
+    my $idd = $c->idd_from_code($country_code)
+
+    PARAMS
+    $country_code   => Country code
+
+    RETURNS
+    IDD code of country
+
+=cut
+
+=head2 localized_code2country
+
+    USAGE
+    my $country_name = $c->localized_code2country($country_code, $lang)
+
+    PARAMS
+    $country_code   => Country code
+    $lang => Language code
+
+    RETURNS
+    Localized Country name 
 
 =cut
 
