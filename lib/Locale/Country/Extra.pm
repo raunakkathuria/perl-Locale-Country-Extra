@@ -371,7 +371,7 @@ Version 0.06
     my $countries = Locale::Country::Extra->new();
 
     my $c = $countries->country_from_code('au'); # returns 'Australia'
-    my $code = $countries->code_from_phone('Indonesia'); # returns 'id'
+    my $code = $countries->code_from_country('Indonesia'); # returns 'id'
     my $idd = $countries->idd_from_code('in'); # returns 91
     my $code = $countries->code_from_phone('+44 8882220202'); # returns 'gb'
 
