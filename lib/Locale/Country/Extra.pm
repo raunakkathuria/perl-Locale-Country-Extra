@@ -406,7 +406,7 @@ Version 0.06
     my $code = $c->code_from_phone($phone_number)
 
     PARAMS
-    $phone_number   => Phone Numbder
+    $phone_number   => Phone Number
 
     RETURNS
     Country code
@@ -465,7 +465,7 @@ Version 0.06
 
 =head1 SOURCE CODE
 
-L<Github|https://github.com/binary-com/perl-Locale-Country-Extra>
+L<GitHub|https://github.com/binary-com/perl-Locale-Country-Extra>
 
 =head1 AUTHOR
 
