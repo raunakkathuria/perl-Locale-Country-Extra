@@ -1,7 +1,7 @@
 package Locale::Country::Extra;
 use strict; use warnings;
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 use Locale::Country qw();
 use Locale::Country::Multilingual { use_io_layer => 1 };
@@ -362,7 +362,7 @@ Locale::Country::Extra - Standard and IDD codes for Country identification, with
 
 =head1 VERSION
 
-Version 0.07
+Version 0.08
 
 =head1 SYNOPSIS
 
@@ -384,6 +384,16 @@ Version 0.07
 
     RETURNS
     A list of all country codes
+
+=cut
+
+=head2 all_country_names
+
+    USAGE
+    my @names = $c->all_country_names()
+
+    RETURNS
+    A list of all country names
 
 =cut
 
