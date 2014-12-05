@@ -371,7 +371,7 @@ Version 0.06
     my $countries = Locale::Country::Extra->new();
 
     my $c = $countries->country_from_code('au'); # returns 'Australia'
-    my $code = $countries->code_from_phone('Indonesia'); # returns 'id'
+    my $code = $countries->code_from_country('Indonesia'); # returns 'id'
     my $idd = $countries->idd_from_code('in'); # returns 91
     my $code = $countries->code_from_phone('+44 8882220202'); # returns 'gb'
 
@@ -406,7 +406,7 @@ Version 0.06
     my $code = $c->code_from_phone($phone_number)
 
     PARAMS
-    $phone_number   => Phone Numbder
+    $phone_number   => Phone Number
 
     RETURNS
     Country code
@@ -465,7 +465,7 @@ Version 0.06
 
 =head1 SOURCE CODE
 
-L<Github|https://github.com/binary-com/perl-Locale-Country-Extra>
+L<GitHub|https://github.com/binary-com/perl-Locale-Country-Extra>
 
 =head1 AUTHOR
 
