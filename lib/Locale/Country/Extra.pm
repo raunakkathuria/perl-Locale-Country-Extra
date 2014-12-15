@@ -1,7 +1,7 @@
 package Locale::Country::Extra;
 use strict; use warnings;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 use Locale::Country qw();
 use Locale::Country::Multilingual { use_io_layer => 1 };
@@ -20,7 +20,6 @@ sub new {
 
 sub country_from_code {
     my ( $self, $code ) = @_;
-    die "code is required" if !$code;
     $code = lc $code;
 
     # we need gb
@@ -31,7 +30,6 @@ sub country_from_code {
 
 sub code_from_country {
     my ( $self, $country ) = @_;
-    die "country is required" if !$country;
 
     my %code_countries = reverse %{ $self->_country_codes };
     return lc $code_countries{$country};
@@ -39,7 +37,6 @@ sub code_from_country {
 
 sub idd_from_code {
     my ( $self, $code ) = @_;
-    die "code is required" if !$code;
     $code = lc $code;
 
     # we need gb
@@ -50,7 +47,6 @@ sub idd_from_code {
 
 sub code_from_phone {
     my ( $self, $number ) = @_;
-    die "number is required" if !$number;
 
     $number =~ s/\D//g;    # Remove non-digits
     $number =~ s/^00//;    # Remove the leading '00'.
@@ -83,8 +79,6 @@ sub all_country_codes {
 
 sub localized_code2country {
     my ( $self, $country_code, $lang ) = @_;
-    die "country_code is required" if !$country_code;
-    die "lang is required"         if !$lang;
 
     my $lcm = Locale::Country::Multilingual->new();
     return $lcm->code2country( $country_code, $lang );
@@ -362,7 +356,7 @@ Locale::Country::Extra - Standard and IDD codes for Country identification, with
 
 =head1 VERSION
 
-Version 0.08
+Version 0.09
 
 =head1 SYNOPSIS
 

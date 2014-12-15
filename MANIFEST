@@ -5,4 +5,3 @@ MANIFEST
 README.md
 t/00_load.t
 t/countries.t
-t/validations.t
