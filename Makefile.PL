@@ -17,6 +17,7 @@ WriteMakefile(
     BUILD_REQUIRES => {
         'Test::More' => 0,
         'Test::Exception' => 0,
+        'Test::NoWarnings' => 0,
     },
     PREREQ_PM => {
         'Locale::Country' => '0',
