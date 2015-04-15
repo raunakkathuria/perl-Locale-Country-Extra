@@ -356,7 +356,7 @@ Locale::Country::Extra - Standard and IDD codes for Country identification, with
 
 =head1 VERSION
 
-Version 0.09
+Version 1.0.0
 
 =head1 SYNOPSIS
 
