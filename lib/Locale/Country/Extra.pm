@@ -1,7 +1,7 @@
 package Locale::Country::Extra;
 use strict; use warnings;
 
-our $VERSION = '0.090_1';
+our $VERSION = '1.0.0';
 
 use Locale::Country qw();
 use Locale::Country::Multilingual { use_io_layer => 1 };
