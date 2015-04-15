@@ -1,7 +1,7 @@
 package Locale::Country::Extra;
 use strict; use warnings;
 
-our $VERSION = '0.09';
+our $VERSION = '1.0.0';
 
 use Locale::Country qw();
 use Locale::Country::Multilingual { use_io_layer => 1 };
@@ -356,7 +356,7 @@ Locale::Country::Extra - Standard and IDD codes for Country identification, with
 
 =head1 VERSION
 
-Version 0.09
+Version 1.0.0
 
 =head1 SYNOPSIS
 
