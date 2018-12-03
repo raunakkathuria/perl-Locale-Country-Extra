@@ -2,7 +2,7 @@
 use strict; use warnings;
 
 use lib 'lib';
-use Test::More (tests => 8);
+use Test::More (tests => 9);
 use Test::NoWarnings;
 use Locale::Country::Extra;
 
@@ -35,14 +35,24 @@ subtest 'idd_from_code' => sub {
     is $countries->idd_from_code('GB'), '44',   'GB is idd 44';
     is $countries->idd_from_code('IN'), '91',   'IN is idd 91';
     is $countries->idd_from_code('uk'), '44',   'uk is idd 44';
+    is $countries->idd_from_code('im'), '44',   'im is idd 44';
 };
 
 subtest 'code_from_phone' => sub {
     is $countries->code_from_phone('001222694669'),    'us', '001222694669 is from US';
     is $countries->code_from_phone('+1 264 99922211'), 'ai', '+1 264 99922211 is from AI';
     is $countries->code_from_phone('+44 8882220202'),  'gb', '+44 8882220202 is from GB';
-    is $countries->code_from_phone('11111118882220202'),  '', 
+    is $countries->code_from_phone('11111118882220202'),  '',
         '11111118882220202 returns empty string';
+};
+
+subtest 'codes_from_phone' => sub {
+    my @expected = qw(us);
+    is_deeply $countries->codes_from_phone('001222694669'),    \@expected, '001222694669 is from US';
+    @expected = qw(ai us);
+    is_deeply $countries->codes_from_phone('+1 264 99922211'), \@expected, '+1 264 99922211 is from AI';
+    @expected = qw(gb im);
+    is_deeply $countries->codes_from_phone('+44 8882220202'),  \@expected, '+44 8882220202 is from GB or IM';
 };
 
 subtest 'all_country_names' => sub {
