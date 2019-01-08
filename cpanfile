@@ -1,4 +1,5 @@
 requires 'Locale::Country';
+requires 'Locale::Codes';
 requires 'Locale::Country::Multilingual';
 
 on test => sub {
