@@ -10,12 +10,12 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - run:
-        name: install dzil
-        command: |
-          cpanm --quiet --notest Dist::Zilla Dist::Zilla::App::Command::cover App::cpm Devel::Cover::Report::Codecov
-          cpm install -w 2 --mirror=http://cpan.cpantesters.org/ -g $(dzil authordeps --missing)
-          cpm install -w 2 --mirror=http://cpan.cpantesters.org/ -g $(dzil listdeps --author --missing)
+          name: install dzil
+          command: |
+            cpanm --quiet --notest Dist::Zilla Dist::Zilla::App::Command::cover App::cpm Devel::Cover::Report::Codecov
+            cpm install -w 2 --mirror=http://cpan.cpantesters.org/ -g $(dzil authordeps --missing)
+            cpm install -w 2 --mirror=http://cpan.cpantesters.org/ -g $(dzil listdeps --author --missing)
       - run:
-        name: dzil test 
-        command: |
-          dzil smoke --release --author && dzil cover -test -report codecov && dzil xtest
+          name: dzil test 
+          command: |
+            dzil smoke --release --author && dzil cover -test -report codecov && dzil xtest
