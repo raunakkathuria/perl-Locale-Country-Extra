@@ -1,7 +1,7 @@
 requires 'Locale::Country::Multilingual';
 
 on configure => sub {
-    requires 'Locale::Country';
+    requires 'Locale::Country', '3.59';
     requires 'Locale::Codes';
 };
 
