@@ -9,6 +9,7 @@ jobs:
           username: circle4regentmarkets
           password: $DOCKERHUB_PASSWORD
     steps:
+      - checkout
       - run:
           name: install dzil
           command: |
