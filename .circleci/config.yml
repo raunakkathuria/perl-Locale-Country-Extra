@@ -3,11 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: regentmarkets/debian-ci:latest
-        user: nobody
-        auth:
-          username: circle4regentmarkets
-          password: $DOCKERHUB_PASSWORD
+      - image: circleci/classic:latest
     steps:
       - checkout
       - run:
