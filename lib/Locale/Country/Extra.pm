@@ -377,6 +377,8 @@ Version 1.0.0
 
 =head1 SUBROUTINES
 
+=head2 new
+
 =head2 all_country_codes
 
     USAGE
@@ -410,7 +412,7 @@ Version 1.0.0
 
 =cut
 
-=head2 code_from_phone
+=head2 get_valid_phone
 
     USAGE
     my $phone = $c->get_valid_phone($phone_number)
