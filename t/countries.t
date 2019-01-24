@@ -23,6 +23,9 @@ subtest 'code_from_country' => sub {
     is $countries->code_from_country('Australia'),          'au', 'Australia is AU';
     is $countries->code_from_country('United Kingdom'),     'gb', 'United Kingdom is GB';
     is $countries->code_from_country('Indonesia'),          'id', 'Indonesia is ID';
+    is $countries->code_from_country("australia"),          'au', "australia case insensitive";
+    is $countries->code_from_country("nonexistent"),         undef , "test nonexistent  country ";
+
 };
 
 subtest 'idd_from_code' => sub {

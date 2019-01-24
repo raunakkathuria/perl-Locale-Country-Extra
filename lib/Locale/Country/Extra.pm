@@ -6,6 +6,7 @@ our $VERSION = '1.0.1';
 
 use Locale::Country qw();
 use Locale::Country::Multilingual { use_io_layer => 1 };
+use List::Util ();
 
 sub new {
     my $class = shift;
@@ -33,7 +34,14 @@ sub code_from_country {
     my ($self, $country) = @_;
 
     my %code_countries = reverse %{ $self->_country_codes };
-    return lc $code_countries{$country};
+
+    unless( exists $code_countries{$country} ){
+        $country = lc $country;
+        $country = List::Util::first { $country eq lc $_ } keys %code_countries;
+        return undef unless $country;
+    };
+    
+    return lc $code_countries{$country} ;
 }
 
 sub idd_from_code {

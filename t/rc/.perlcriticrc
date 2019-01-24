@@ -1,8 +1,8 @@
 severity        = 4
 criticism-fatal = 1
 color           = 1
-include = TestingAndDebugging::RequireUseWarnings Subroutines::RequireArgUnpacking TestingAndDebugging::ProhibitNoStrict CodeLayout::RequireTidyCode ErrorHandling::RequireCheckingReturnValueOfEval TestingAndDebugging::RequireUseStrict
-exclude = ValuesAndExpressions::ProhibitConstantPragma Subroutines::ProhibitExplicitReturnUndef
+include = TestingAndDebugging::RequireUseWarnings Subroutines::RequireArgUnpacking TestingAndDebugging::ProhibitNoStrict CodeLayout::RequireTidyCode ErrorHandling::RequireCheckingReturnValueOfEval TestingAndDebugging::RequireUseStrict Freenode::Each Freenode::IndirectObjectNotation Freenode::DollarAB Freenode::DeprecatedFeatures BuiltinFunctions::ProhibitReturnOr Dynamic::NoIndirect ProhibitSmartmatch Subroutines::ProhibitAmbiguousFunctionCalls Modules::ProhibitPOSIXimport
+exclude = ValuesAndExpressions::ProhibitConstantPragma Subroutines::ProhibitExplicitReturnUndef Freenode::PackageMatchesFilename Freenode::DiscouragedModules
 
 [TestingAndDebugging::RequireUseWarnings]
 equivalent_modules=MooseX::Singleton Mojo::Base

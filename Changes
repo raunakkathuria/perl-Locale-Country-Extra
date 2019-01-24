@@ -1,4 +1,7 @@
 {{$NEXT}}
+	Update code_from_country to case insenstive
+	
+1.0.2	
 	Switch to dzil
 
 1.0.1	2018-12-02
