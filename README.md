@@ -17,6 +17,29 @@ my $idd = $countries->idd_from_code('in'); # returns 91
 my $code = $countries->code_from_phone('+44 8882220202'); # returns 'gb'
 ```
 
+Extra aliases for country name are supported as below
+ ```
+our %COUNTRY_MAP = (
+    "brunei darussalam"                 => "bn",
+    "cocos islands"                     => "cc",
+    "congo"                             => "cg",
+    "heard island and mcdonald islands" => "hm",
+    "hong kong s.a.r."                  => "hk",
+    "korea"                             => "kr",
+    "macao s.a.r."                      => "mo",
+    "myanmar"                           => "mm",
+    "islamic republic of pakistan"      => "pk",
+    "palestinian authority"             => "ps",
+    "pitcairn"                          => "pn",
+    "saint vincent and the grenadines"  => "vc",
+    "south georgia"                     => "gs",
+    "syrian arab republic"              => "sy",
+    "u.a.e."                            => "ae",
+    "vatican city state"                => "va",
+    "virgin islands"                    => "vg"
+);
+```
+
 #### INSTALLATION
 
 To install this module, run the following commands:

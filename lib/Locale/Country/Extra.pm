@@ -5,8 +5,28 @@ use warnings;
 our $VERSION = '1.0.1';
 
 use Locale::Country qw();
-use Locale::Country::Multilingual { use_io_layer => 1 };
-use List::Util ();
+use Locale::Country::Multilingual {use_io_layer => 1};
+
+our %COUNTRY_MAP = (
+    "brunei darussalam"                 => "bn",
+    "cocos islands"                     => "cc",
+    "congo"                             => "cg",
+    "heard island and mcdonald islands" => "hm",
+    "hong kong s.a.r."                  => "hk",
+    "korea"                             => "kr",
+    "macao s.a.r."                      => "mo",
+    "myanmar"                           => "mm",
+    "islamic republic of pakistan"      => "pk",
+    "palestinian authority"             => "ps",
+    "pitcairn"                          => "pn",
+    "saint vincent and the grenadines"  => "vc",
+    "south georgia"                     => "gs",
+    "south georgia & south sandwich"    => "gs",
+    "syrian arab republic"              => "sy",
+    "u.a.e."                            => "ae",
+    "vatican city state"                => "va",
+    "virgin islands"                    => "vg"
+);
 
 sub new {
     my $class = shift;
@@ -33,15 +53,15 @@ sub country_from_code {
 sub code_from_country {
     my ($self, $country) = @_;
 
-    my %code_countries = reverse %{ $self->_country_codes };
+    $country =~ s/^\s+|\s+$//g;
+    $country = lc $country;
 
-    unless( exists $code_countries{$country} ){
-        $country = lc $country;
-        $country = List::Util::first { $country eq lc $_ } keys %code_countries;
-        return undef unless $country;
-    };
-    
-    return lc $code_countries{$country} ;
+    return $COUNTRY_MAP{$country} if $COUNTRY_MAP{$country};
+
+    my $code = Locale::Country::Multilingual->new()->country2code($country);
+
+    return $code ? lc $code : undef;
+
 }
 
 sub idd_from_code {
@@ -65,7 +85,7 @@ sub get_valid_phone {
 }
 
 sub code_from_phone {
-    my ( $self, $number ) = @_;
+    my ($self, $number) = @_;
 
     if (my $first = $self->codes_from_phone($number)) {
         return lc ${$first}[0];
@@ -78,8 +98,8 @@ sub codes_from_phone {
     my ($self, $number) = @_;
 
     if (my $phone = $self->get_valid_phone($number)) {
-        my %codes = %{ $self->_idd_codes };
-        return [ sort grep { $phone =~ /^$codes{$_}/ } keys %codes ]
+        my %codes = %{$self->_idd_codes};
+        return [sort grep { $phone =~ /^$codes{$_}/ } keys %codes];
     }
 
     return '';
@@ -87,12 +107,12 @@ sub codes_from_phone {
 
 sub all_country_names {
     my $self = shift;
-    return values %{ $self->_country_codes };
+    return values %{$self->_country_codes};
 }
 
 sub all_country_codes {
     my $self = shift;
-    return keys %{ $self->_country_codes };
+    return keys %{$self->_country_codes};
 }
 
 sub localized_code2country {
@@ -113,7 +133,7 @@ sub _build_country_codes {
 
     my $country_hash = {};
     foreach my $code (@codes) {
-        $country_hash->{ lc($code) } = $lcm->code2country($code);
+        $country_hash->{lc($code)} = $lcm->code2country($code);
     }
 
     return $country_hash;
@@ -417,6 +437,29 @@ Version 1.0.0
 
     RETURNS
     Country code
+
+    EXTRA
+    Extra aliases for country name are supported as below
+    %COUNTRY_MAP = (
+        "brunei darussalam"                 => "bn",
+        "cocos islands"                     => "cc",
+        "congo"                             => "cg",
+        "heard island and mcdonald islands" => "hm",
+        "hong kong s.a.r."                  => "hk",
+        "korea"                             => "kr",
+        "macao s.a.r."                      => "mo",
+        "myanmar"                           => "mm",
+        "islamic republic of pakistan"      => "pk",
+        "palestinian authority"             => "ps",
+        "pitcairn"                          => "pn",
+        "saint vincent and the grenadines"  => "vc",
+        "south georgia"                     => "gs",
+        "south georgia & south sandwich"    => "gs",
+        "syrian arab republic"              => "sy",
+        "u.a.e."                            => "ae",
+        "vatican city state"                => "va",
+        "virgin islands"                    => "vg"
+    );
 
 =cut
 

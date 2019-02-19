@@ -1,8 +1,7 @@
 #!/usr/bin/perl
 use strict; use warnings;
-
 use lib 'lib';
-use Test::More (tests => 9);
+use Test::More (tests => 10);
 use Test::NoWarnings;
 use Locale::Country::Extra;
 
@@ -23,9 +22,30 @@ subtest 'code_from_country' => sub {
     is $countries->code_from_country('Australia'),          'au', 'Australia is AU';
     is $countries->code_from_country('United Kingdom'),     'gb', 'United Kingdom is GB';
     is $countries->code_from_country('Indonesia'),          'id', 'Indonesia is ID';
-    is $countries->code_from_country("australia"),          'au', "australia case insensitive";
+    is $countries->code_from_country("austraLIA"),          'au', "australia case insensitive";
     is $countries->code_from_country("nonexistent"),         undef , "test nonexistent  country ";
+    is $countries->code_from_country("Macau SAR China"),     'mo' , "Macau SAR China is Macau";
+    is $countries->code_from_country("Macau"),               'mo' , "Macau also mo";
+};
 
+subtest 'country_from_mt5' => sub {
+    is $countries->code_from_country("Brunei Darussalam"),  "bn", "Brunei Darussalam is bn";
+    is $countries->code_from_country("Cocos Islands"),      "cc", "Cocos Islands is cc";
+    is $countries->code_from_country("Congo"),              "cg", "Congo is cg";
+    is $countries->code_from_country("Heard Island and Mcdonald Islands"),  "hm", "Heard Island and Mcdonald Islands is hm";
+    is $countries->code_from_country("Hong Kong S.A.R."),   "hk", "Hong Kong S.A.R. is hk";
+    is $countries->code_from_country("Korea"),              "kr", "Korea is kr";
+    is $countries->code_from_country("Macao S.A.R."),       "mo", "Macao S.A.R. is mo";
+    is $countries->code_from_country("Myanmar"),            "mm", "Myanmar is mm";
+    is $countries->code_from_country("Islamic Republic of Pakistan"),   "pk", "Islamic Republic of Pakistan is pk";
+    is $countries->code_from_country("Palestinian Authority"),  "ps", "Palestinian Authority is ps";
+    is $countries->code_from_country("Pitcairn"),           "pn", "Pitcairn is pn";
+    is $countries->code_from_country("Saint Vincent and The Grenadines"),   "vc", "Saint Vincent and The Grenadines is vc";
+    is $countries->code_from_country("South Georgia"),      "gs", "South Georgia is gs";
+    is $countries->code_from_country("Syrian Arab Republic"),"sy", "Syrian Arab Republic is sy";
+    is $countries->code_from_country("U.A.E."),             "ae", "U.A.E. is ae";
+    is $countries->code_from_country("Vatican City State"), "va", "Vatican City State is va";
+    is $countries->code_from_country("Virgin Islands"),     "vg", "Virgin Islands is vg";
 };
 
 subtest 'idd_from_code' => sub {
@@ -60,12 +80,12 @@ subtest 'codes_from_phone' => sub {
 
 subtest 'all_country_names' => sub {
     my @all_names = $countries->all_country_names;
-    is ref (\@all_names), 'ARRAY', 'all_country_names returns a list';
+    is scalar @all_names, 249, 'all_country_names returns 249 countries';
 };
 
 subtest 'all_country_codes' => sub {
     my @all_codes = $countries->all_country_codes;
-    is ref (\@all_codes), 'ARRAY', 'all_country_codes returns a list';
+    is scalar @all_codes, 249, 'all_country_codes returns 249';
 };
 
 subtest 'localized_code2country' => sub {

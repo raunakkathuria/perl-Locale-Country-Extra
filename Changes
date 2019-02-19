@@ -1,6 +1,6 @@
 {{$NEXT}}
-	Update code_from_country to case insenstive
-	
+	- Add alias names for code_from_country
+	- Update code_from_country to case insenstive
 1.0.2	
 	Switch to dzil
 
