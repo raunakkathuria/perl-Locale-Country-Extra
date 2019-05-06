@@ -4,7 +4,7 @@ use lib 'lib';
 use Test::More (tests => 10);
 use Test::NoWarnings;
 use Locale::Country::Extra;
-
+use utf8;
 my $countries = Locale::Country::Extra->new();
 
 subtest 'country_from_code' => sub {
