@@ -1,4 +1,4 @@
-﻿package Locale::Country::Extra;
+package Locale::Country::Extra;
 use strict;
 use warnings;
 use utf8;
@@ -19,7 +19,7 @@ our %COUNTRY_MAP = (
     "islamic republic of pakistan"      => "pk",
     "palestinian authority"             => "ps",
     "pitcairn"                          => "pn",
-    "réunion"                           => "re",
+    "réunion"                          => "re",
     "saint vincent and the grenadines"  => "vc",
     "south georgia"                     => "gs",
     "south georgia & south sandwich"    => "gs",
@@ -384,8 +384,6 @@ sub _build_idd_codes {
 1;
 
 __END__
-
-=encoding utf8
 
 =head1 NAME
 
