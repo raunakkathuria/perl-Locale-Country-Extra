@@ -1,4 +1,4 @@
-package Locale::Country::Extra;
+﻿package Locale::Country::Extra;
 use strict;
 use warnings;
 use utf8;
@@ -384,6 +384,8 @@ sub _build_idd_codes {
 1;
 
 __END__
+
+=encoding utf8
 
 =head1 NAME
 
