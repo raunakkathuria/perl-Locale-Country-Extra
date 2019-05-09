@@ -385,6 +385,9 @@ sub _build_idd_codes {
 
 __END__
 
+
+=encoding utf8
+
 =head1 NAME
 
 Locale::Country::Extra - Standard and IDD codes for Country identification, with Multilingual support
