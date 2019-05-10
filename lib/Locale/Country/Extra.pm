@@ -1,7 +1,7 @@
 package Locale::Country::Extra;
 use strict;
 use warnings;
-
+use utf8;
 our $VERSION = '1.0.3';
 
 use Locale::Country qw();
@@ -19,6 +19,7 @@ our %COUNTRY_MAP = (
     "islamic republic of pakistan"      => "pk",
     "palestinian authority"             => "ps",
     "pitcairn"                          => "pn",
+    "r\x{e9}union"                      => "re",
     "saint vincent and the grenadines"  => "vc",
     "south georgia"                     => "gs",
     "south georgia & south sandwich"    => "gs",
@@ -384,6 +385,9 @@ sub _build_idd_codes {
 
 __END__
 
+
+=encoding utf8
+
 =head1 NAME
 
 Locale::Country::Extra - Standard and IDD codes for Country identification, with Multilingual support
@@ -452,6 +456,7 @@ Version 1.0.0
         "islamic republic of pakistan"      => "pk",
         "palestinian authority"             => "ps",
         "pitcairn"                          => "pn",
+        "réunion"                           => "re",
         "saint vincent and the grenadines"  => "vc",
         "south georgia"                     => "gs",
         "south georgia & south sandwich"    => "gs",
