@@ -47,6 +47,8 @@ subtest 'country_extra' => sub {
     is $countries->code_from_country("Vatican City State"), "va", "Vatican City State is va";
     is $countries->code_from_country("Virgin Islands"),     "vg", "Virgin Islands is vg";
     is $countries->code_from_country("Réunion"),            "re", "Réunion is re";
+    is $countries->code_from_country("taiwan"),             "tw", "taiwan is tw";
+    is $countries->code_from_country("Curacao"),            "cw", "Curaçao is cw";
 };
 
 subtest 'idd_from_code' => sub {
